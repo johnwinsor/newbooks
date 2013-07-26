@@ -142,7 +142,7 @@
 <?php
 include 'config.php';
 $shelflists = "http://www.goodreads.com/shelf/list.xml?user_id=" . $gruserid . "&key=" . $grkey;
-$baserssurl = "http://www.goodreads.com/review/list_rss/14996177?shelf=";
+$baserssurl = "http://www.goodreads.com/review/list_rss/14996177?per_page=200&shelf=";
 //echo $shelflists;
 function string_sanitize($s) {
 	$q = str_replace('"', "", $s);
