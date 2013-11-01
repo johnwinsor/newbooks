@@ -237,6 +237,8 @@ function feed_menu($shelflists) {
 					foreach (array_slice($items,1) as $i) {
 						//var_dump($i);
 						$desc = string_sanitize($i["book_description"]);
+						$review = $i["user_review"];
+						print $review;
 						$coverurl = $i["book_large_image_url"];
 						if (preg_match("/nocover/i", $coverurl)) {
 							$coverurl= "http://www.goodreads.com" . $coverurl;
@@ -246,6 +248,7 @@ function feed_menu($shelflists) {
 						print "<div class=\"bookcover description\" data-trigger=\"hover\" data-title=\"" . $i["title"] . "\" data-content=\"" . $desc . "\"><a href=\"http://library.mills.edu/search/i?SEARCH=" . $i["isbn"] . "&sortdropdown=-&searchscope=6\" target=\"_parent\"><img src=\"" . $coverurl . "\" alt=\"\"></a></div>";
 						print "<div class=\"booktitle\"><a href=\"http://library.mills.edu/search/i?SEARCH=" . $i["isbn"] . "&sortdropdown=-&searchscope=6\" target=\"_parent\">" . $i["title"] . "</a></div>";
 						print "<div class=\"bookauthor\">by " . $i["author_name"] . "</div>";
+						print "<div class=\"bookauthor\">Call Number: " . $review . "</div>";
 						print "<hr>";
 					}
 				?>
