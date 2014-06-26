@@ -52,7 +52,6 @@ function feed_menu($shelflists) {
 }
 
 ?>
-<link href="css/custom.css" rel="stylesheet">
 
 	<div class="row maincontent">
 		<div class="col-md-12">
