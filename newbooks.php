@@ -141,7 +141,8 @@ function feed_menu($shelflists) {
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-40625016-4', 'mills.edu');
-  ga('send', 'pageview');
+  ga('require', 'displayfeatures');
+	ga('send', 'pageview');
 
 </script>
 
