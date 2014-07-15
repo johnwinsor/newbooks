@@ -19,18 +19,11 @@ function titlecap($shelf) {
 
 function feed_menu($shelflists) {
 	$xml = simplexml_load_file($shelflists);
-	//print_r($xml);
-	//$shelves = $xml->xpath("//user_shelf[not (name='read' or name='to-read' or name='currently-reading')]");
 	$shelves = $xml->xpath("//user_shelf[not (name='read' or name='to-read')][not (starts-with(name,'weekly'))]");
-	//print_r($shelves);
 
 	print "<form class=\"form-inline\" role=\"form\" action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"get\">";
 	print "<div class=\"form-group\">";
 			print "<select class=\"form-control\" name=\"list\">";
-
-
-// <?php if($_POST['YourCountry']=="Argentina") echo "selected=selected
-
 			foreach ($shelves as $shelf) {
 				$feedname =  $shelf->name;
 				$name = titlecap($feedname);
@@ -57,13 +50,9 @@ if(isset($_GET["list"])) {
 	$p->setOptions(0,200,0,NULL);
 
 	$post = $_GET["list"];
-	//$source = $_GET["feed"];
 	$source = $baserssurl.$post;
-	//$source = "http://www.goodreads.com/review/list_rss/14996177?shelf=history-new-books";
-	//echo $source;
 	$p->parse($source);
 	$channel = $p->getChannel();
-	//var_dump($channel);
 
 	$shelf = $channel["title"];
 	$feedtitle = titlecap($shelf);
