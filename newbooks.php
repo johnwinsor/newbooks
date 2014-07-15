@@ -72,10 +72,7 @@ if(isset($_GET["list"])) {
 	if($feedtitle=="Currently Reading") {
 		$feedtitle = "New Arrivals";
 	}
-// } else {
-// 	header("Location: newbooks.php?list=currently-reading");
-// }
-
+}
 
 ?>
 
