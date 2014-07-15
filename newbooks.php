@@ -27,7 +27,6 @@ function feed_menu($shelflists) {
 	print "<form class=\"form-inline\" role=\"form\" action=\"" . $_SERVER['PHP_SELF'] . "\" method=\"get\">";
 	print "<div class=\"form-group\">";
 			print "<select class=\"form-control\" name=\"list\">";
-			print "<option>Select Book List</option>";
 
 
 // <?php if($_POST['YourCountry']=="Argentina") echo "selected=selected
