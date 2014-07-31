@@ -1,5 +1,4 @@
 <?php
-// include('../includes/header.html');
 include 'config.php';
 $shelflists = "http://www.goodreads.com/shelf/list.xml?user_id=" . $gruserid . "&key=" . $grkey;
 $baserssurl = "http://www.goodreads.com/review/list_rss/14996177?per_page=200&shelf=";
@@ -94,28 +93,22 @@ if(isset($_GET["list"])) {
 
     <script>
         $(function(){
-            $("#header").load("/includes/head.html");
-            $("#footer").load("/includes/foot.html");
+            $("#millsheader").load("/includes/head.html");
+            $("#millsfooter").load("/includes/foot.html");
         });
     </script>
 
 </head>
 <body>
 <div class="container-fluid mainbackground">
-	<div id="header"></div>
+    <div class="row" id="millsheader"></div>
     <div class="row maincontent">
-
-
-
 		<div class="col-md-12">
 			<div class="row contentcenter">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
+				<div class="col-md-12">
 					<?php feed_menu($shelflists); ?>
 				</div>
-				<div class="col-md-4"></div>
 			</div>
-
 			<div class="row page-header contentcenter">
 				<div class="col-md-12">
 					<h2><?php echo $feedtitle;?></h2>
@@ -152,7 +145,7 @@ foreach (array_slice($items,1) as $i) {
 ?>
 		</div>
 	</div> <!-- close maincontent -->
-    <div id="footer"></div>
+    <div class="row" id="millsfooter"></div>
 </div> <!-- close container -->
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
