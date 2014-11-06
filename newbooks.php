@@ -166,6 +166,7 @@ $('[data-toggle="popover"]').popover({
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-40625016-4', 'auto');
+  ga('require', 'displayfeatures');
   ga('send', 'pageview');
 
 </script>
