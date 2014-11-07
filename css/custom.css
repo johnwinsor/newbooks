@@ -28,3 +28,12 @@
   width: 200px;
   margin: auto;
 }
+
+.owl-carousel {
+    background-color: #F1F1F1;
+    padding-top: 50px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+    height: 500px;
+}

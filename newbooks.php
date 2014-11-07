@@ -110,11 +110,8 @@ if(isset($_GET["list"])) {
 					<?php feed_menu($shelflists); ?>
 				</div>
 			</div>
-			<div class="row page-header contentcenter">
-				<div class="col-md-12">
-					<h2><?php echo $feedtitle;?></h2>
-				</div>
-			</div>
+
+			<hr />
 
 			<div id="owl" class="owl-carousel">
 
@@ -135,7 +132,7 @@ if(isset($_GET["list"])) {
 								print "<img src=\"" . $coverurl . "\" alt=\"\">";
 								print "<p class=\"booktitle\"><a href=\"http://library.mills.edu/search/i?SEARCH=" . $i["isbn"] . "&sortdropdown=-&searchscope=6\" target=\"_parent\">" . $i["title"] . "</a></p>";
 								print "<p class=\"bookauthor\">by " . $i["author_name"] . "</p>";
-								print "<p class=\"bookauthor\">Call Number: " . $review . "</p>";
+								print "<p class=\"bookauthor\">Call No: " . $review . "</p>";
 							print "</div>";
 						print "</div>";
 					}
