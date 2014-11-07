@@ -1,40 +1,18 @@
 .popover {
-position: absolute;
-top: 0;
-left: 0;
-z-index: 1010;
-display: none;
-padding: 1px;
-text-align: left;
-background-color: #fff;
-background-clip: padding-box;
-border: 1px solid #ccc;
-border: 1px solid rgba(0,0,0,.2);
-border-radius: 6px;
--webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-white-space: normal;
-}
-
-
-.popover {
+  max-width: 600px;
   width: auto;
-  max-width: 476px;
 }
 
-.popover-inner {
-  font-size: 80%;
-  width: 100%;
-}
-
-.covercontainer a img {
-width: 100%;
-height: auto;
-vertical-align: middle;
-padding:1px;
-border:1px solid grey;
-background-color:white;
--ms-interpolation-mode: bicubic;
+.item img {
+    width: 100%;
+    max-height: 300px;
+    height: auto;
+    vertical-align: middle;
+    padding:1px;
+    border:1px solid grey;
+    background-color:white;
+    -ms-interpolation-mode: bicubic;
+  }
 }
 
 .booktitle {
@@ -46,7 +24,7 @@ background-color:white;
   text-align: right;
 }
 
-.covercontainer {
-  width: 290px;
+.item {
+  width: 200px;
   margin: auto;
 }

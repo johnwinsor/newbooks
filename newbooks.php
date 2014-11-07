@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+
 $shelflists = "http://www.goodreads.com/shelf/list.xml?user_id=" . $gruserid . "&key=" . $grkey;
 $baserssurl = "http://www.goodreads.com/review/list_rss/14996177?per_page=200&shelf=";
 //echo $shelflists;
@@ -50,6 +51,7 @@ if(isset($_GET["list"])) {
 
 	$post = $_GET["list"];
 	$source = $baserssurl.$post;
+
 	$p->parse($source);
 	$channel = $p->getChannel();
 
@@ -75,13 +77,20 @@ if(isset($_GET["list"])) {
     <title>Mills College Library</title>
 
     <!-- styles -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="/includes/spinner/ladda-themeless.min.css">
     <link href="/includes/css/global.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+
+
+	<!-- OWL CAROUSEL -->
+	<!-- Important Owl stylesheet -->
+	<link rel="stylesheet" href="carousel/owl-carousel/owl.carousel.css">
+	<!-- Default Theme -->
+	<link rel="stylesheet" href="carousel/owl-carousel/owl.theme.css">
+
+
+	<link href="css/custom.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -107,34 +116,31 @@ if(isset($_GET["list"])) {
 				</div>
 			</div>
 
-			<?php
-			$items = $p->getItems();     // gets news items
-			$covercount = 0;
-			foreach (array_slice($items,1) as $i) {
-				$covercount++;
-				//var_dump($i);
-				$desc = string_sanitize($i["book_description"]);
-				$review = $i["user_review"];
-				$coverurl = $i["book_large_image_url"];
-				if (preg_match("/nocover/i", $coverurl)) {
-					$coverurl= "http://www.goodreads.com" . $coverurl;
-				}
-				//print $desc;
-				print "<br />";
-				print "<div class=\"row\">";
-						print "<div class=\"col-md-4\"></div>";
-						print "<div class=\"col-md-4\">";
-								print "<div class=\"covercontainer\" data-toggle=\"popover\" data-container=\"div#caption-" . $covercount . "\" data-title=\"" . $i["title"] . "\" data-content=\"" . $desc . "\"><a href=\"http://library.mills.edu/search/i?SEARCH=" . $i["isbn"] . "&sortdropdown=-&searchscope=6\" target=\"_parent\"><img src=\"" . $coverurl . "\" alt=\"\"></a>";
-										print "<p class=\"booktitle\"><a href=\"http://library.mills.edu/search/i?SEARCH=" . $i["isbn"] . "&sortdropdown=-&searchscope=6\" target=\"_parent\">" . $i["title"] . "</a></span>";
-										print "<p class=\"bookauthor\">by " . $i["author_name"] . "</span>";
-										print "<p class=\"bookauthor\">Call Number: " . $review . "</span>";
-								print "</div>";
+			<div id="owl" class="owl-carousel">
+
+				<?php
+					$items = $p->getItems();     // gets news items
+					$covercount = 0;
+					foreach (array_slice($items,1) as $i) {
+						$covercount++;
+						//var_dump($i);
+						$desc = string_sanitize($i["book_description"]);
+						$review = $i["user_review"];
+						$coverurl = $i["book_large_image_url"];
+						if (preg_match("/nocover/i", $coverurl)) {
+							$coverurl= "http://www.goodreads.com" . $coverurl;
+						}
+						print "<div id=\"pwrap\">";
+							print "<div class=\"item\" rel=\"popover\" data-toggle=\"popover\" data-title=\"" . $i["title"] . "\" data-content=\"" . $desc . "\">";
+								print "<img src=\"" . $coverurl . "\" alt=\"\">";
+								print "<p class=\"booktitle\"><a href=\"http://library.mills.edu/search/i?SEARCH=" . $i["isbn"] . "&sortdropdown=-&searchscope=6\" target=\"_parent\">" . $i["title"] . "</a></p>";
+								print "<p class=\"bookauthor\">by " . $i["author_name"] . "</p>";
+								print "<p class=\"bookauthor\">Call Number: " . $review . "</p>";
+							print "</div>";
 						print "</div>";
-						print "<div class=\"col-md-4\" id=\"caption-" . $covercount . "\"></div>";
-				print "</div>";
-				print "<hr>";
-			}
-			?>
+					}
+				?>
+			</div>
 		</div>
 	</div> <!-- close maincontent -->
 	<div id="millsfooter"></div>
@@ -142,9 +148,8 @@ if(isset($_GET["list"])) {
 <!-- scripts -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-<script src="http://malsup.github.io/jquery.form.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="carousel/owl-carousel/owl.carousel.js"></script>
 
 <script>
     $(function(){
@@ -154,9 +159,31 @@ if(isset($_GET["list"])) {
 </script>
 
 <script>
-$('[data-toggle="popover"]').popover({
-		trigger: 'hover'
-		});
+	$('body').popover({
+    	selector: '[rel=popover]',
+		trigger: 'hover',
+		placement: 'auto right',
+		viewport: 'body',
+		container: 'body'
+    });
+</script>
+
+
+<script>
+$(document).ready(function() {
+
+  $("#owl").owlCarousel({
+
+      autoPlay: 3000, //Set AutoPlay to 3 seconds
+	  stopOnHover: true,
+
+      items : 5,
+      itemsDesktop : [1199,3],
+      itemsDesktopSmall : [979,3]
+
+  });
+
+});
 </script>
 
 <script>
