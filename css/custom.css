@@ -29,11 +29,11 @@
   margin: auto;
 }
 
-.owl-carousel {
+.carousel-div {
     background-color: #F1F1F1;
-    padding-top: 50px;
     border-style: solid;
     border-width: 1px;
     border-color: grey;
     height: 500px;
+    padding-top: 50px;
 }

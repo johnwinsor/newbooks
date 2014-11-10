@@ -104,39 +104,39 @@ if(isset($_GET["list"])) {
     <div id="millsheader"></div>
     <div class="maincontent">
         <div class="container-fluid">
-		    <div class="row" id="millsheader"></div>
 			<div class="row contentcenter">
 				<div class="col-md-12">
 					<?php feed_menu($shelflists); ?>
 				</div>
 			</div>
-
 			<hr />
+			<div class="row carousel-div">
+                <div class="col-md-12">
+					<div id="owl" class="owl-carousel">
 
-			<div id="owl" class="owl-carousel">
+						<?php
+							$items = $p->getItems();     // gets news items
+							$covercount = 0;
+							foreach (array_slice($items,1) as $i) {
+								$covercount++;
+								//var_dump($i);
+								$desc = string_sanitize($i["book_description"]);
+								$review = $i["user_review"];
+								$coverurl = $i["book_large_image_url"];
+								if (preg_match("/nocover/i", $coverurl)) {
+									$coverurl= "http://www.goodreads.com" . $coverurl;
+								}
+									print "<div class=\"item\" rel=\"popover\" data-toggle=\"popover\" data-title=\"" . $i["title"] . "\" data-content=\"" . $desc . "\">";
+										print "<img src=\"" . $coverurl . "\" alt=\"\">";
+										print "<p class=\"booktitle\"><a href=\"http://library.mills.edu/search/i?SEARCH=" . $i["isbn"] . "&sortdropdown=-&searchscope=6\" target=\"_parent\">" . $i["title"] . "</a></p>";
+										print "<p class=\"bookauthor\">by " . $i["author_name"] . "</p>";
+										print "<p class=\"bookauthor\">Call No: " . $review . "</p>";
+									print "</div>";
+							}
+						?>
 
-				<?php
-					$items = $p->getItems();     // gets news items
-					$covercount = 0;
-					foreach (array_slice($items,1) as $i) {
-						$covercount++;
-						//var_dump($i);
-						$desc = string_sanitize($i["book_description"]);
-						$review = $i["user_review"];
-						$coverurl = $i["book_large_image_url"];
-						if (preg_match("/nocover/i", $coverurl)) {
-							$coverurl= "http://www.goodreads.com" . $coverurl;
-						}
-						print "<div id=\"pwrap\">";
-							print "<div class=\"item\" rel=\"popover\" data-toggle=\"popover\" data-title=\"" . $i["title"] . "\" data-content=\"" . $desc . "\">";
-								print "<img src=\"" . $coverurl . "\" alt=\"\">";
-								print "<p class=\"booktitle\"><a href=\"http://library.mills.edu/search/i?SEARCH=" . $i["isbn"] . "&sortdropdown=-&searchscope=6\" target=\"_parent\">" . $i["title"] . "</a></p>";
-								print "<p class=\"bookauthor\">by " . $i["author_name"] . "</p>";
-								print "<p class=\"bookauthor\">Call No: " . $review . "</p>";
-							print "</div>";
-						print "</div>";
-					}
-				?>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div> <!-- close maincontent -->
@@ -156,12 +156,12 @@ if(isset($_GET["list"])) {
 </script>
 
 <script>
-	$('body').popover({
+	$('.maincontent').popover({
     	selector: '[rel=popover]',
 		trigger: 'hover',
 		placement: 'auto right',
-		viewport: 'body',
-		container: 'body'
+		viewport: '.maincontent',
+		container: '.maincontent'
     });
 </script>
 
