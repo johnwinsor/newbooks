@@ -1,5 +1,5 @@
 .popover {
-  max-width: 600px;
+  max-width: 300px;
   width: auto;
 }
 
@@ -34,6 +34,6 @@
     border-style: solid;
     border-width: 1px;
     border-color: grey;
-    height: 500px;
+    /* height: 500px; */
     padding-top: 50px;
 }

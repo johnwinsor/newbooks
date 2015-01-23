@@ -120,7 +120,8 @@ if(isset($_GET["list"])) {
 							foreach (array_slice($items,1) as $i) {
 								$covercount++;
 								//var_dump($i);
-								$desc = string_sanitize($i["book_description"]);
+                                $descr = string_sanitize($i["book_description"]);
+                                $desc = mb_strimwidth($descr, 0, 1200, "...");
 								$review = $i["user_review"];
 								$coverurl = $i["book_large_image_url"];
 								if (preg_match("/nocover/i", $coverurl)) {
